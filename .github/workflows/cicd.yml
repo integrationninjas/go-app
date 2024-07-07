@@ -15,11 +15,11 @@ jobs:
       - name: Build Go application
         run: |
           go mod download
-          go build -o bin/go-app main.go
+          go build -o bin/application main.go
       - name: Archive application
-        run: zip go-app.zip bin/
-      - name: Deploy to Elastic Beanstalk (replace placeholders)
-        uses: einaregilsson/beanstalk-deploy@v20
+        run: zip -r application.zip bin/
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v21
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -27,5 +27,5 @@ jobs:
           environment_name: go-app-env 
           region: eu-north-1
           version_label: ${{ github.sha }}
-          deployment_package: go-app.zip
+          deployment_package: application.zip
           use_existing_version_if_available: true
