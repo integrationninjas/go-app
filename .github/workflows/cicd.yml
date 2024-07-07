@@ -15,7 +15,7 @@ jobs:
       - name: Build Go application
         run: |
           go mod download
-          go build -o go-app main.go
+          go build -o bin/my-app main.go
       - name: Archive application
         run: zip go-app.zip go-app    
       - name: Deploy to Elastic Beanstalk (replace placeholders)
