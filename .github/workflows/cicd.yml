@@ -27,5 +27,4 @@ jobs:
           environment_name: go-app-env 
           region: eu-north-1
           version_label: ${{ github.sha }}
-          # Path to deployment package (if not using Docker)
-          # deployment_package: ./my-app.zip
+          deployment_package: go-app.zip
